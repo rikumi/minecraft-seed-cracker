@@ -12,16 +12,14 @@ public class Main {
     public static long crackSeedByHash(long seedHash) {
         for (long i = 0; i < Long.MAX_VALUE; i++) {
             long hash = Main.hashSeed(i);
-            System.out.println("Calculating Hash: " + i + " -> " + hash);
+            System.out.println("Calculating Hash: +" + i + " -> " + hash);
             if (hash == seedHash) {
                 return i;
             }
-        }
-        for (long i = 0; i >= Long.MIN_VALUE; i--) {
-            long hash = Main.hashSeed(i);
-            System.out.println("Calculating Hash: " + i + " -> " + hash);
+            long hashNeg = Main.hashSeed(-i);
+            System.out.println("Calculating Hash: -" + i + " -> " + hash);
             if (hash == seedHash) {
-                return i;
+                return -i;
             }
         }
         throw new RuntimeException("Seed not found!");
